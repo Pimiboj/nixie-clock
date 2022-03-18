@@ -1,10 +1,12 @@
 #ifndef DIGIT_H
 #define DIGIT_H
 
+#include "IDigit.h"
 #include "stdint.h"
+
 namespace NixieTube
 {
-    class Digit
+    class Digit : public IDigit
     {
     private:
         uint8_t dataPin;
