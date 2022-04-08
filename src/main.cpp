@@ -1,9 +1,9 @@
 #include <Arduino.h>
-#include <Digit.h>
+#include <K155id1.h>
 
-NixieTube::Digit HourDigit = NixieTube::Digit(15, 2, 4);
-NixieTube::Digit MinuteDigit = NixieTube::Digit(13, 12, 14);
-NixieTube::Digit SecondDigit = NixieTube::Digit(27, 26, 25);
+NixieTube::K155id1 HourDigit = NixieTube::K155id1(15, 2, 4);
+NixieTube::K155id1 MinuteDigit = NixieTube::K155id1(13, 12, 14);
+NixieTube::K155id1 SecondDigit = NixieTube::K155id1(27, 26, 25);
 
 void setup()
 {

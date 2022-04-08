@@ -1,8 +1,8 @@
-#include <Digit.h>
+#include <K155id1.h>
 #include <Arduino.h>
 using namespace NixieTube;
 
-Digit::Digit(uint8_t dataPin, uint8_t clockPin, uint8_t latchPin) :
+K155id1::K155id1(uint8_t dataPin, uint8_t clockPin, uint8_t latchPin) :
     dataPin(dataPin), clockPin(clockPin), latchPin(latchPin)
 {
     pinMode(dataPin, OUTPUT);
@@ -12,7 +12,7 @@ Digit::Digit(uint8_t dataPin, uint8_t clockPin, uint8_t latchPin) :
     SetNumber(0);
 }
         
-void Digit::SetNumber(uint8_t number)
+void K155id1::SetNumber(uint8_t number)
 {
     if(number > 99) return;
     currentNumber = number;
@@ -23,13 +23,13 @@ void Digit::SetNumber(uint8_t number)
     digitalWrite(latchPin, HIGH);
 }
 
-void Digit::SetMSD(uint8_t digit)
+void K155id1::SetMSD(uint8_t digit)
 {
     if(digit > 9) return;
     SetNumber(digit * 10 + currentNumber % 10);
 }
 
-void Digit::SetLSD(uint8_t digit)
+void K155id1::SetLSD(uint8_t digit)
 {
     if(digit > 9) return;
     SetNumber((currentNumber / 10) * 10 + digit);
