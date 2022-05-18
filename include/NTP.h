@@ -4,7 +4,7 @@
 #include <ITime.h>
 #include <ctime>
 
-class NTP : public IClock
+class NTP : public ITime
 {
 public:
     NTP(const char* server);

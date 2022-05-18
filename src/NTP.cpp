@@ -12,6 +12,7 @@ NTP::NTP(const char* server)
 bool NTP::Init()
 {
     configTime(0, 0, m_server);
+    return true;
 }
 
 tm NTP::GetTimeUTC()
