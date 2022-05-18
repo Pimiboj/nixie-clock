@@ -3,34 +3,32 @@
 using namespace NixieTube;
 
 K155id1::K155id1(uint8_t dataPin, uint8_t clockPin, uint8_t latchPin) :
-    dataPin(dataPin), clockPin(clockPin), latchPin(latchPin)
+    m_dataPin(dataPin), m_clockPin(clockPin), m_latchPin(latchPin)
 {
     pinMode(dataPin, OUTPUT);
     pinMode(clockPin, OUTPUT);
     pinMode(latchPin, OUTPUT);
-    isOn = true;
     SetNumber(0);
 }
         
 void K155id1::SetNumber(uint8_t number)
 {
     if(number > 99) return;
-    currentNumber = number;
-    if(!isOn) return;
+    m_currentNumber = number;
     uint8_t data = ((number % 10) << 4) + (number / 10);
-    digitalWrite(latchPin, LOW);
-    shiftOut(dataPin, clockPin, MSBFIRST, data);
-    digitalWrite(latchPin, HIGH);
+    digitalWrite(m_latchPin, LOW);
+    shiftOut(m_dataPin, m_clockPin, MSBFIRST, data);
+    digitalWrite(m_latchPin, HIGH);
 }
 
 void K155id1::SetMSD(uint8_t digit)
 {
     if(digit > 9) return;
-    SetNumber(digit * 10 + currentNumber % 10);
+    SetNumber(digit * 10 + m_currentNumber % 10);
 }
 
 void K155id1::SetLSD(uint8_t digit)
 {
     if(digit > 9) return;
-    SetNumber((currentNumber / 10) * 10 + digit);
+    SetNumber((m_currentNumber / 10) * 10 + digit);
 }
