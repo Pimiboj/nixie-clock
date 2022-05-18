@@ -15,9 +15,7 @@ bool NTP::Init()
     return true;
 }
 
-tm NTP::GetTimeUTC()
+bool NTP::GetTimeUTC(tm time)
 {
-    struct tm timeInfo;
-    getLocalTime(&timeInfo);
-    return timeInfo;
+    return getLocalTime(&time);
 }

@@ -8,7 +8,7 @@ class ITime
 public:
     virtual ~ITime() {};
 
-    virtual tm GetTimeUTC() = 0;
+    virtual bool GetTimeUTC(tm time) = 0;
 };
 
 #endif

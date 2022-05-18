@@ -27,9 +27,8 @@ void setup()
 {
     //Set up serial and wait for serial to be available
     Serial.begin(9600);
-    while(!Serial)
+    while (!Serial)
     {
-
     }
 
     //Start the WiFi manager and try to connect
@@ -42,13 +41,15 @@ void setup()
     ntpClock.Init();
 
     //webserver startup
-    
 }
 
 void loop()
 {
-    struct tm time = ntpClock.GetTimeUTC();
-    time.tm_sec += DSTOffset + TimezoneOffset;
-    mktime(&time);
-    display.DisplayTime(time);
+    struct tm time;
+    if (ntpClock.GetTimeUTC(time))
+    {
+        time.tm_sec += DSTOffset + TimezoneOffset;
+        mktime(&time);
+        display.DisplayTime(time);
+    }
 }

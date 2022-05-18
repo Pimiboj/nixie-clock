@@ -10,7 +10,7 @@ public:
     NTP(const char* server);
 
     bool Init();
-    tm GetTimeUTC();
+    bool GetTimeUTC(tm time);
 
 private:
     const char* m_server;
