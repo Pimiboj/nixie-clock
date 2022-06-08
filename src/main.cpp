@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <WiFiManager.h>
 #include <time.h>
+#include <WebInterface.h>
 
 #include <Nixie6Digit.h>
 #include <DisplaySimulator.h>
@@ -18,7 +19,7 @@ Nixie6Digit display(HourDigit, MinuteDigit, SecondDigit);
 //NixieTube::SerialDigit SecondDigit = NixieTube::SerialDigit();
 
 //DisplaySimulator display;
-NTP ntpClock("europe.pool.ntp.org");
+NTP ntpClock("pool.ntp.org");
 
 int16_t DSTOffset = 3600;
 int16_t TimezoneOffset = 3600;
@@ -41,6 +42,7 @@ void setup()
     ntpClock.Init();
 
     //webserver startup
+    //WebInterface web;
 }
 
 void loop()
@@ -48,8 +50,10 @@ void loop()
     struct tm time;
     if (ntpClock.GetTimeUTC(time))
     {
-        time.tm_sec += DSTOffset + TimezoneOffset;
-        mktime(&time);
+        //time.tm_sec += DSTOffset + TimezoneOffset;
+        //mktime(&time);
         display.DisplayTime(time);
+        //Serial.println(time.tm_sec);
+        //Serial.println(WiFi.status());
     }
 }
